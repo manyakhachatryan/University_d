@@ -1,0 +1,10 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_university`(
+	UniversityID INT,
+    UniversityName varchar(255),
+    UniversityCountry varchar(255),
+    UniversityCity varchar(255)
+)
+BEGIN
+	INSERT INTO university(UniversityID, UniversityName, UniversityCountry, UniversityCity)
+	VALUES(UniversityID, UniversityName, UniversityCountry, UniversityCity);
+END

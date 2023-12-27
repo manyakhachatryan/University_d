@@ -1,0 +1,21 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_mstudents`(`Students json data` JSON)
+BEGIN
+		DECLARE StudentID INT;
+		DECLARE StudentFirstName varchar(255);
+		DECLARE StudentLastName varchar(255);
+  		DECLARE StudentUniversityID int;
+
+		DECLARE inc int;
+         
+		SET inc = 0;
+         label:
+         WHIlE inc<JSON_LENGTH(`Students json data`) DO
+  		SET StudentID = JSON_UNQUOTE(JSON_EXTRACT(`Students json data`, CONCAT('$[', inc, '].StudentID')));
+        SET StudentFirstName = JSON_UNQUOTE(JSON_EXTRACT(`Students json data`, CONCAT('$[', inc, '].StudentFirstName')));
+		SET StudentLastName = JSON_UNQUOTE(JSON_EXTRACT(`Students json data`, CONCAT('$[', inc, '].StudentLastName')));
+  		SET StudentUniversityID = JSON_UNQUOTE(JSON_EXTRACT(`Students json data`, CONCAT('$[', inc, '].StudentUniversityID')));
+ 		CALL add_student(StudentID, StudentFirstName, StudentLastName,StudentUniversityID);
+         SET inc = inc +1;
+         END
+         WHILE label;
+END

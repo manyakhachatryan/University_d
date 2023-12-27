@@ -1,0 +1,13 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_professorObject`(IN id INT)
+BEGIN
+	SELECT CONCAT(
+    '{"ProfessorID":', p.ProfessorID,',
+    "ProfessorFirstName" :"', p.ProfessorFirstName, '",
+    "ProfessorLastName": "' , p.ProfessorLastName, '",
+    "ProfessorUniversityID":', p.ProfessorUniversityID, ',
+    "ProfessorSubjectID":', p.ProfessorSubjectID, '}'
+    
+    ) AS Professor
+    FROM Professor p
+    WHERE p.ProfessorID = id;
+END

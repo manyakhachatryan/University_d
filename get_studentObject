@@ -1,0 +1,11 @@
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_studentObject`(IN id INT)
+BEGIN
+	SELECT CONCAT('{"StudentID":', s.StudentID, 
+				',"StudentFirstName":"', s.StudentFirstName, 
+				'","StudentLastName":"', s.StudentLastName,
+				'","StudentUniversityID":', s.StudentUniversityID,'}') AS Student
+    FROM Student s
+    WHERE s.StudentID = id;
+END

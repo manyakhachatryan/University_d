@@ -1,0 +1,20 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_muniversities`(`Univercities json data` JSON)
+BEGIN
+	DECLARE UniversityID INT;
+	DECLARE UniversityName varchar(255);
+    DECLARE UniversityCountry varchar(255);
+    DECLARE UniversityCity varchar(255);
+	DECLARE inc INT;
+         
+	SET inc = 0;
+       label:
+        WHIlE inc<JSON_LENGTH(`Univercities json data`) DO
+		SET UniversityID = JSON_UNQUOTE(JSON_EXTRACT(`Univercities json data`, CONCAT('$[', inc, '].UniversityID')));
+        SET UniversityName = JSON_UNQUOTE(JSON_EXTRACT(`Univercities json data`, CONCAT('$[', inc, '].UniversityName')));
+		SET UniversityCountry = JSON_UNQUOTE(JSON_EXTRACT(`Univercities json data`, CONCAT('$[', inc, '].UniversityCountry')));
+        SET UniversityCity = JSON_UNQUOTE(JSON_EXTRACT(`Univercities json data`, CONCAT('$[', inc, '].UniversityCity')));        
+		CALL add_university(UniversityID, UniversityName, UniversityCountry, UniversityCity);
+      SET inc = inc +1;
+       END
+         WHILE label;
+END

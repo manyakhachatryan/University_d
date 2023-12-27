@@ -1,0 +1,20 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_mstudentsubjectlinks`(`SSL json data` JSON)
+BEGIN
+		DECLARE sslID int;
+		DECLARE sslStudentID int;
+		DECLARE sslSubjectID int;
+		DECLARE inc int;
+         
+		SET inc = 0;
+         label:
+         WHIlE inc<JSON_LENGTH(`SSL json data`) DO
+  		SET sslID = JSON_UNQUOTE(JSON_EXTRACT(`SSL json data`, CONCAT('$[', inc, ']. sslID')));
+        SET sslStudentID = JSON_UNQUOTE(JSON_EXTRACT(`SSL json data`, CONCAT('$[', inc, '].sslStudentID')));
+		SET sslSubjectID = JSON_UNQUOTE(JSON_EXTRACT(`SSL json data`, CONCAT('$[', inc, '].sslSubjectID')));
+ 		CALL add_studentsubjectlink(sslID, sslStudentID, sslSubjectID);
+         SET inc = inc +1;
+         END
+         WHILE label;
+END
+
+

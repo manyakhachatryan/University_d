@@ -1,0 +1,11 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_professorSubject`(
+	IN `Professor ID` int 
+)
+BEGIN
+	SELECT sb.subjectName
+    FROM professor p
+    INNER JOIN subject sb ON p.ProfessorSubjectID = sb.SubjectID
+    WHERE p.ProfessorID =  `Professor ID`
+    ;
+    
+END

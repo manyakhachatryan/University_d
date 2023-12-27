@@ -1,0 +1,12 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_universityObject`(IN id INT)
+BEGIN
+	SELECT CONCAT(
+		'{ "UniversityID" :', u.UniversityID, ',
+        "UniversityName" : "', u.UniversityName , '",
+        "UniversityCountry" : "', u.UniversityCountry, '",
+        "UniversityCity": "', u.UniversityCity, '"
+        }'
+	) as University
+    FROM university u
+    WHERE u.UniversityID = id;
+END

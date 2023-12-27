@@ -1,0 +1,28 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_mgrades`(`Grades json data` JSON)
+BEGIN
+		-- DECLARE GradeID int;
+		-- DECLARE GradeStudentID int;
+		-- DECLARE GradeSubjectID int;
+		-- DECLARE GradeGrade int;
+         DEclare inc int;
+		SET inc = 0;
+   
+         WHIlE inc<JSON_LENGTH(`Grades json data`) DO
+  		-- SET GradeID = JSON_UNQUOTE(JSON_EXTRACT(`Grades json data`, CONCAT('$[', inc, '].GradeID')));
+       --  SET GradeStudentID = JSON_UNQUOTE(JSON_EXTRACT(`Grades json data`, CONCAT('$[', inc, '].GradeStudentID')));
+		-- SET GradeSubjectID = JSON_UNQUOTE(JSON_EXTRACT(`Grades json data`, CONCAT('$[', inc, '].GradeSubjectID')));
+       --  SET GradeGrade = JSON_UNQUOTE(JSON_EXTRACT(`Grades json data`, CONCAT('$[', inc, '].GradeGrade')));
+ 		-- CALL add_grade(GradeID, GradeStudentID, GradeSubjectID, GradeGrade);
+        
+        
+        INSERT INTO grade(GradeID, GradeStudentID,GradeSubjectID, GradeGrade)
+		SELECT  JSON_UNQUOTE(JSON_EXTRACT(`Grades json data`, CONCAT('$[', inc, '].GradeID'))),
+				JSON_UNQUOTE(JSON_EXTRACT(`Grades json data`, CONCAT('$[', inc, '].GradeStudentID'))),
+				JSON_UNQUOTE(JSON_EXTRACT(`Grades json data`, CONCAT('$[', inc, '].GradeSubjectID'))),
+				JSON_UNQUOTE(JSON_EXTRACT(`Grades json data`, CONCAT('$[', inc, '].GradeGrade')));
+        
+        
+        
+         SET inc = inc +1;
+         END WHILE;
+END

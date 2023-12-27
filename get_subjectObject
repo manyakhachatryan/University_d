@@ -1,0 +1,6 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_subjectObject`(IN id int)
+BEGIN
+	SELECT CONCAT('{"SubjectID":', s.SubjectID, ',"Name":"', s.SubjectName,'"}') AS Subject
+    FROM subject s
+    WHERE s.SubjectID = id;
+END

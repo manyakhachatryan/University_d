@@ -1,0 +1,8 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_studentsByProfName`(IN `Professor name` varchar(255))
+BEGIN
+		SELECT s.StudentFirstName, s.StudentLastName
+        FROM professor p
+        INNER JOIN  studentsubjectlink ss ON  p.ProfessorSubjectID = ss.sslSubjectID
+        INNER JOIN student s ON ss.sslStudentID = s.StudentID
+        WHERE p.ProfessorFirstName=`Professor name`;
+END

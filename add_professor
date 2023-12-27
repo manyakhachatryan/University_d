@@ -1,0 +1,11 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_professor`(
+	ProfessorID INT,
+    ProfessorFirstName varchar(255),
+    ProfessorLastName varchar(255),
+    ProfessorUniversityID int,
+	ProfessorSubjectID int
+)
+BEGIN
+	INSERT INTO professor(ProfessorID, ProfessorFirstName, ProfessorLastName, ProfessorUniversityID, ProfessorSubjectID)
+	VALUES(ProfessorID, ProfessorFirstName, ProfessorLastName, ProfessorUniversityID, ProfessorSubjectID);
+END

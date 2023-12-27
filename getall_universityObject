@@ -1,0 +1,11 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getall_universityObject`()
+BEGIN
+	SELECT CONCAT(
+		'{ "UniversityID" :', u.UniversityID, ',
+        "UniversityName" : "', u.UniversityName , '",
+        "UniversityCountry" : "', u.UniversityCountry, '",
+        "UniversityCity": "', u.UniversityCity, '"
+        }'
+    ) as Universisties
+    FROM University u;
+END

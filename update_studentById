@@ -1,0 +1,11 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_studentById`(
+	IN StudentId int,
+	IN StudentFirstName varchar(255),
+	IN 	StudentLastName varchar(255),
+	IN 	StudentUniversityId int
+)
+BEGIN	
+	UPDATE Student
+    SET StudentFirstName = StudentFirstName, StudentLastName = StudentLastName, StudentUniversityID = StudentUniversityId
+    WHERE Student.StudentID =  StudentId;
+END

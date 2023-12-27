@@ -1,0 +1,15 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_student`(
+IN StudentID int,
+IN StudentFirstName varchar(255),
+IN StudentLastName varchar(255),
+IN StudentUniversityID int
+)
+BEGIN
+	DECLARE lastInsertedID INT;
+	INSERT INTO student(StudentID, StudentFirstName, StudentLastName,StudentUniversityID )
+	VALUES(StudentID, StudentFirstName, StudentLastName,StudentUniversityID);
+    
+    SELECT *
+    FROM Student s
+	WHERE s.StudentID = StudentID;
+END

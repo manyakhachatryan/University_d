@@ -1,0 +1,22 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_mprofessors`(`Professors json data` JSON)
+BEGIN
+		DECLARE ProfessorID INT;
+		DECLARE ProfessorFirstName varchar(255);
+		DECLARE ProfessorLastName varchar(255);
+		DECLARE ProfessorUniversityID int;
+		DECLARE ProfessorSubjectID int;
+        DECLARE inc int;
+        
+        SET inc = 0;
+        label:
+        WHIlE inc<JSON_LENGTH(`Professors json data`) DO
+		SET ProfessorID = JSON_UNQUOTE(JSON_EXTRACT(`Professors json data`, CONCAT('$[', inc, '].ProfessorID')));
+        SET ProfessorFirstName = JSON_UNQUOTE(JSON_EXTRACT(`Professors json data`, CONCAT('$[', inc, '].ProfessorFirstName')));
+		SET ProfessorLastName = JSON_UNQUOTE(JSON_EXTRACT(`Professors json data`, CONCAT('$[', inc, '].ProfessorLastName')));
+		SET ProfessorUniversityID = JSON_UNQUOTE(JSON_EXTRACT(`Professors json data`, CONCAT('$[', inc, ']. ProfessorUniversityID')));
+		SET ProfessorSubjectID = JSON_UNQUOTE(JSON_EXTRACT(`Professors json data`, CONCAT('$[', inc, '].ProfessorSubjectID')));
+		CALL add_professor(ProfessorID, ProfessorFirstName, ProfessorLastName, ProfessorUniversityID, ProfessorSubjectID);
+        SET inc = inc +1;
+        END
+        WHILE label;
+END

@@ -1,0 +1,25 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_student`(
+IN StudentID int
+  , IN StudentFirstName varchar(255)
+  , IN StudentLastName varchar(255)
+  , IN StudentUniversityID int
+  , OUT RowCount INT
+ )
+BEGIN
+ SELECT COUNT(*) INTO RowCount
+    FROM Student s
+    WHERE 
+        (StudentID IS NULL OR s.StudentID = StudentID) AND 
+        (StudentFirstName IS NULL OR s.StudentFirstName = StudentFirstName) AND 
+        (StudentLastName IS NULL OR s.StudentLastName = StudentLastName) AND
+        (StudentUniversityID IS NULL OR s.StudentUniversityID = StudentUniversityID);
+
+ Select *
+ FROM Student s
+ WHERE 
+				(StudentID is null or s.StudentID = StudentID  ) and 
+				( StudentFirstName is null  or s.StudentFirstName = StudentFirstName ) and 
+				(StudentLastName is null  or s. StudentLastName =  StudentLastName  ) and
+                ( StudentUniversityID is null or s. StudentUniversityID =  StudentUniversityID  ) 
+;
+END

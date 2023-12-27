@@ -1,0 +1,9 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_grade`(
+IN GradeID int,
+IN GradeStudentID int,
+IN GradeSubjectID int,
+IN GradeGrade int)
+BEGIN
+	INSERT INTO grade(GradeID, GradeStudentID,GradeSubjectID, GradeGrade)
+	VALUES(GradeID, GradeStudentID,GradeSubjectID, GradeGrade);
+END

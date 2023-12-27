@@ -1,0 +1,10 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_studentsubjectlink`(
+IN sslID int,
+IN sslStudentID int,
+IN sslSubjectID int
+)
+BEGIN
+	INSERT INTO studentsubjectlink(sslID, sslStudentID,sslSubjectID)
+	VALUES(sslID, sslStudentID,sslSubjectID);
+END
+

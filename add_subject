@@ -1,0 +1,7 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_subject`(
+	IN SubjectID int,
+    IN SubjectName varchar(255))
+BEGIN
+	INSERT INTO subject(SubjectID, SubjectName)
+	VALUES(SubjectID, SubjectName);
+END
